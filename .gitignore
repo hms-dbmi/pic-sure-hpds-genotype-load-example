@@ -1,0 +1,6 @@
+jupyter-notebooks/.ipynb_checkpoints/
+hpds/all
+hpds/vcfOutput
+hpds/vcfInput
+hpds/*.javabin
+hpds/encryption_key

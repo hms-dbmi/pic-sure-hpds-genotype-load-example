@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+
+  jupyter:
+    image: dbmi/r-datascience-notebook:nhanes-pic-sure-notebook-development-only-August-20-2018
+    restart: always
+    networks:
+      - public
+    expose:
+      - 8888
+    ports:
+      - 80:8888
+    volumes:
+      - ./jupyter-notebooks:/home/jovyan/work
+
+#  pic-sure-hpds-nhanes:
+#    image: dbmi/pic-sure-hpds:master_ecf4ae8
+#    restart: always
+#    networks:
+#      - public
+#    expose:
+#      - 8080
+#    ports:
+#      - 8080:8080
+#    entrypoint: java  -Xdebug -Xrunjdwp:transport=dt_socket,address=0.0.0.0:8000,server=y,suspend=n -XX:+UseParallelGC -XX:SurvivorRatio=250 -Xms4096m -Xmx4096m -server -jar hpds.jar -httpPort 8080 -DCACHE_SIZE=10000 -DSMALL_TASK_THREADS=1 -DLARGE_TASK_THREADS=1 -DSMALL_JOB_LIMIT=100 -DID_BATCH_SIZE=2000 "-DALL_IDS_CONCEPT=\\000_UDN ID\\"  "-DID_CUBE_NAME=\\000_UDN ID\\"
+#    volumes:
+#      - ./nhanes-load-example/hpds:/opt/local/hpds
+networks:
+  public:
+
+
+
