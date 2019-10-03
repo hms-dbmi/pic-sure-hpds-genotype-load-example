@@ -1,6 +1,8 @@
 jupyter-notebooks/.ipynb_checkpoints/
-hpds/all
+hpds/all_not_ignoring_temporarily
 hpds/vcfOutput
 hpds/vcfInput
-hpds/*.javabin
-hpds/encryption_key
+hpds/*.javabin_not_ignoring_temporarily
+hpds/encryption_key_not_ignoring
+hpds/merged
+
