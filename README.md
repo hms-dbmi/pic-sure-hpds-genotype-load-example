@@ -10,7 +10,7 @@ The `vcfIndex.tsv` must be a tab separated flat file with 1 line per VCF file yo
 
 The columns in this file are:
 
-filename	chromosome	annotated	gzip	sample_ids	patient_ids	sample_relationship	related_sample_ids	
+**`filename	chromosome	annotated	gzip	sample_ids	patient_ids	sample_relationship	related_sample_ids`** 
 
 - **`filename`** - The name of a VCF file that is in the `vcfLoad` folder.
 
@@ -75,6 +75,6 @@ You can now start your validation of the data load by running:
 
 Then pointing your web browser at the IP of your docker host.
 
-Because there is NO SECURITY on this validation `Jupyter Notebook`, it is recommended that you close off the firewall and SSH tunnel to the host in order to do your validation.
+Because there is NO SECURITY on this validation `Jupyter Notebook`, it is recommended that you close off the firewall and SSH tunnel to the host in order to do your validation. Use `localhost` in your browser to load the `Jupyter Notebook`.
 
 
