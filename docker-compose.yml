@@ -14,7 +14,7 @@ services:
       - ./jupyter-notebooks:/home/jovyan/work
 
   pic-sure-hpds-1kgenome:
-    image: dbmi/pic-sure-hpds:master_f6b7b31
+    image: dbmi/pic-sure-hpds:master_904e92c
     restart: always
     networks:
       - public
