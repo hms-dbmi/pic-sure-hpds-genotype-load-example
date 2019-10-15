@@ -12,7 +12,7 @@ The columns in this file are:
 
 **`filename	chromosome	annotated	gzip	sample_ids	patient_ids	sample_relationship	related_sample_ids`** 
 
-- **`filename`** - The name of a VCF file that is in the `vcfLoad` folder.
+- **`filename`** - The name of a VCF file that is in the `vcfLoad` folder. This should be the full path of the VCF files relative to the container filesystem. For the purposes of this Docker example, if you have a file 3.vcf, it should be listed as /opt/local/hpds/vcfInput/3.vcf in this column. If you are not using Docker or have requirements forcing you to modify the docker-compose volume mapping, your settings may vary. 
 
 - **`chromosome`** - The number of the chromosome in the file (if you have 1 file per chromosome) or ALL if each of your VCF files have all chromosomes for their samples.
 
@@ -61,13 +61,11 @@ This process will use all available CPU. It is extremely greedy. It is not advis
 
 The first column after `variant-loader_1` is a UNIX timestamp, just so you can see how long each chunk is taking on average. The chunk number (22210) can be seen as an indicator of progress through the job. This number multiplied by 1000 is the number of loci on the genome that have been loaded (or skipped if they were not in your file) for the specific chromosome. Our example file is only an excerpt from CHR14 of 1KGenome starts around 20,000,000 bp and ends at about 40,000,000 bp.
 
-As the loading progresses, the loader will also be accumulating an INFO column data in memory. This INFO storage is the most memory intensive part of the load. For our example file we allocate 4GB of RAM, which is more than we need. For a larger project you may need to tweak the `heapsize(-Xmx)` setting in the docker-compose entrypoint of the variant-loader to have more RAM. 
+As the loading progresses, the loader will also be accumulating an INFO column data in memory. This INFO storage is the most memory intensive part of the load. For our example file we allocate 4GB of RAM, which is more than we need. For a larger project you may need to tweak the `HEAPSIZE` environment setting in the docker-compose entrypoint of the variant-loader to have more RAM. This is expressed in number of megabytes of RAM to allocate.
 
 Once the process completes you will see something like the following message:
 
-Converted239855399 seconds
-
-The number here is actually milliseconds, we will fix the label soon.
+Converted 239855 seconds
 
 You can now start your validation of the data load by running:
 
@@ -76,5 +74,30 @@ You can now start your validation of the data load by running:
 Then pointing your web browser at the IP of your docker host.
 
 Because there is NO SECURITY on this validation `Jupyter Notebook`, it is recommended that you close off the firewall and SSH tunnel to the host in order to do your validation. Use `localhost` in your browser to load the `Jupyter Notebook`.
+
+>> **NOTE**: HPDS has limitations related to the way data must be formatted in the VCF file. Read over the following:
+
+
+Multi-allelic variants have to be split into multiple rows. So if you have:
+
+1	1111111	.	A	T,C	100	PASS	.	GT	1/2
+
+You have to split it to:
+
+1	1111111	.	A	T	100	PASS	.	GT	0/1
+1	1111111	.	A	C	100	PASS	.	GT	0/1
+
+
+There is no support currently for flag-based INFO columns. One approach that works well is to map all of the flag values for a row into a new INFO column called FLAGS and put all values for the VCF row into that column like so:
+
+1	1111111	.	A	T	100	PASS	MULTIALLELIC;SYNONYMOUS;	GT	0/1
+
+Is changed to:
+
+1	1111111	.	A	T	100	PASS	FLAGS=MULTIALLELIC,SYNONYMOUS;	GT	0/1
+
+
+Phased records are coerced into unphased by the loader. This means 1|0 and 0|1 both become 0/1 after they are loaded.
+
 
 
