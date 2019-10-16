@@ -1,3 +1,9 @@
+# This example is ready to run queries out of the box
+We have already performed the example load and the data is already available through the Jupyter Notebook. To run through the example queries, just run `docker-compose up -d` and point your browser at your Docker host. Once you get an idea what is possible to use your data once in HPDS, you will want to stop the jupyter environment and delete the pre-loaded data prior to running through the load instructions:
+
+`docker-compose down`
+`rm -rf hpds/all hpds/merged`
+
 # Loading your VCF data into HPDS
 
 Before loading your VCF file(s), two additional files must be created:
