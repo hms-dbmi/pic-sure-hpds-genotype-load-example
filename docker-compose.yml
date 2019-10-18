@@ -14,7 +14,7 @@ services:
       - ./jupyter-notebooks:/home/jovyan/work
 
   pic-sure-hpds-1kgenome:
-    image: dbmi/pic-sure-hpds:master_8131212
+    image: dbmi/pic-sure-hpds:master_d4ef0ed
     restart: always
     networks:
       - public
@@ -24,8 +24,8 @@ services:
     ports:
       - 8080:8080
       - 8000:8000
-#    entrypoint: java  -Xdebug -Xrunjdwp:transport=dt_socket,address=0.0.0.0:8000,server=y,suspend=n -XX:+UseParallelGC -XX:SurvivorRatio=250 -Xmx1024m -server -jar hpds.jar -httpPort 8080 -DCACHE_SIZE=10000 -DSMALL_TASK_THREADS=1 -DLARGE_TASK_THREADS=1 -DSMALL_JOB_LIMIT=100 -DID_BATCH_SIZE=2000 "-DALL_IDS_CONCEPT=NONE"  "-DID_CUBE_NAME=NONE"
-    entrypoint: java  -XX:+UseParallelGC -XX:SurvivorRatio=250 -Xmx1024m -server -jar hpds.jar -httpPort 8080 -DCACHE_SIZE=10000 -DSMALL_TASK_THREADS=1 -DLARGE_TASK_THREADS=1 -DSMALL_JOB_LIMIT=100 -DID_BATCH_SIZE=2000 "-DALL_IDS_CONCEPT=NONE"  "-DID_CUBE_NAME=NONE"
+    entrypoint: java  -Xdebug -Xrunjdwp:transport=dt_socket,address=0.0.0.0:8000,server=y,suspend=n -XX:+UseParallelGC -XX:SurvivorRatio=250 -Xmx1024m -server -jar hpds.jar -httpPort 8080 -DCACHE_SIZE=10000 -DSMALL_TASK_THREADS=1 -DLARGE_TASK_THREADS=1 -DSMALL_JOB_LIMIT=100 -DID_BATCH_SIZE=2000 "-DALL_IDS_CONCEPT=NONE"  "-DID_CUBE_NAME=NONE"
+#    entrypoint: java  -XX:+UseParallelGC -XX:SurvivorRatio=250 -Xmx1024m -server -jar hpds.jar -httpPort 8080 -DCACHE_SIZE=10000 -DSMALL_TASK_THREADS=1 -DLARGE_TASK_THREADS=1 -DSMALL_JOB_LIMIT=100 -DID_BATCH_SIZE=2000 "-DALL_IDS_CONCEPT=NONE"  "-DID_CUBE_NAME=NONE"
     volumes:
       - ./hpds:/opt/local/hpds
       - ./hpds/all:/opt/local/hpds/vcfOutput
