@@ -80,7 +80,9 @@ You can now start your validation of the data load by running:
 
 Then pointing your web browser at the IP of your docker host.
 
-Because there is NO SECURITY on this validation `Jupyter Notebook`, it is recommended that you close off the firewall and SSH tunnel to the host in order to do your validation. Use `localhost` in your browser to load the `Jupyter Notebook`.
+Because there is NO SECURITY on this validation `Jupyter Notebook`, it is recommended that you close off the firewall and SSH tunnel to the host in order to do your validation. Use `localhost` in your browser to load the `Jupyter Notebook`.  In situations where HPDS is setup on an EC2 instance use the instance's IP address instead of `localhost`.
+
+>> **NOTE**: HPDS requires that an initial HTTP request be sent to unlock the dataset. This should be a POST command to the endpoint URL + /query and should contain a body as such with the proper security key substituted `{"resourceCredentials":{"key":"11111111111111111111111111111111"}}`
 
 >> **NOTE**: HPDS has limitations related to the way data must be formatted in the VCF file. Read over the following:
 
