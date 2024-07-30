@@ -35,7 +35,7 @@ The columns in this file are:
 
 - **`related_sample_ids`** - not currently used
 
->> **NOTE**: Order of the Sample IDs in the vcfIndex file need not to be same as that of the vcf file.
+>> **NOTE**: The order of the Sample IDs in the vcfIndex file does not need to be the same as the vcf file.
 
 The `encryption_key` file must be a 32 character hexadecimal string. This is not currently used for VCF loads, but it is still required. Feel free to use the below key unless you are also loading phenotype data.
 
