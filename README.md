@@ -19,7 +19,7 @@ The columns in this file are:
 
 **`filename	chromosome	annotated	gzip	sample_ids	patient_ids	sample_relationship	related_sample_ids`** 
 
-- **`filename`** - The name of a VCF file that is in the `vcfLoad` folder. This should be the full path of the VCF files relative to the container filesystem. For the purposes of this Docker example, if you have a file 3.vcf, it should be listed as /opt/local/hpds/vcfInput/3.vcf in this column. If you are not using Docker or have requirements forcing you to modify the docker-compose volume mapping, your settings may vary. 
+- **`filename`** - The name of a VCF file. The VCF files should be loaded from the same directory as this `vcfIndex.tsv` file. If you are not using Docker or have requirements forcing you to modify the docker-compose volume mapping, you may need to specify an absolute or relative path. 
 
 - **`chromosome`** - The number of the chromosome in the file (if you have 1 file per chromosome) or ALL if each of your VCF files have all chromosomes for their samples.
 
