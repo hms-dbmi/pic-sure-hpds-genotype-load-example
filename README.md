@@ -19,7 +19,7 @@ The columns in this file are:
 
 **`filename	chromosome	annotated	gzip	sample_ids	patient_ids	sample_relationship	related_sample_ids`** 
 
-- **`filename`** - The name of a VCF file. The VCF files should be loaded from the same directory as this `vcfIndex.tsv` file. If you are not using Docker or have requirements forcing you to modify the docker-compose volume mapping, you may need to specify an absolute or relative path. 
+- **`filename`** - The name of a VCF file. Please specify an absolute path and ensure it is reachable from inside the docker container running the VCF loader job.
 
 - **`chromosome`** - The number of the chromosome in the file (if you have 1 file per chromosome) or ALL if each of your VCF files have all chromosomes for their samples.
 
