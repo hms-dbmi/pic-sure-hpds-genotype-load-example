@@ -1,3 +1,5 @@
+### NOTE: This repository is deprecated. Please see https://github.com/hms-dbmi/pic-sure-all-in-one/blob/master/hpds_geno_load.md for instructions on loading genomic data into PIC-SURE.
+
 # This example is ready to run queries out of the box
 We have already performed the example load and the data is already available through the Jupyter Notebook. To run through the example queries, just run `docker-compose up -d` and point your browser at your Docker host. Once you get an idea what is possible to use your data once in HPDS, you will want to stop the jupyter environment and delete the pre-loaded data prior to running through the load instructions:
 
